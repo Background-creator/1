@@ -7,81 +7,110 @@
     {% include head-custom.html %}
 
     <style>
-      /* Layout: main content left, sidebar right */
-      .layout {
+      /* Navigation Bar */
+      .navigation {
+        background-color: rgba(20, 20, 20, 0.95);
+        padding: 1rem 0;
+        border-bottom: 2px solid #f2cb05;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 0 24px;
+        box-sizing: border-box;
+      }
+
+      .navigation ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
         display: flex;
-        gap: 1rem;
-        align-items: flex-start;
-        padding: 1rem;
-        box-sizing: border-box;
+        gap: 2rem;
+        justify-content: center;
+        flex-wrap: wrap;
       }
 
-      .main-content-area {
-        flex: 1;
-        min-width: 0;
+      .navigation li {
+        display: inline-block;
       }
 
-      .sidebar {
-        width: 350px;
-        max-width: 100%;
-        box-sizing: border-box;
+      .navigation a {
+        color: #4caf50;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.3s ease;
       }
 
+      .navigation a:hover {
+        color: #f2cb05;
+      }
+
+      /* Discord Widget at Bottom */
       .discord-wrap {
-        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        padding: 2rem 1rem;
+        background-color: rgba(20, 20, 20, 0.8);
+        border-top: 2px solid #444;
       }
 
       .discord-wrap iframe {
-        width: 100%;
+        width: 350px;
         height: 500px;
         border: 0;
+        border-radius: 6px;
       }
 
-      @media (max-width: 900px) {
-        .layout {
-          flex-direction: column;
+      @media (max-width: 600px) {
+        .navigation ul {
+          gap: 1rem;
         }
-        .sidebar {
+
+        .discord-wrap iframe {
           width: 100%;
+          max-width: 350px;
         }
       }
     </style>
   </head>
 
   <body>
-    <div class="layout">
-      <!-- Main Page Content (left) -->
-      <div class="main-content-area">
-        <header class="page-header">
-          <h1 class="project-name">{{ site.title }}</h1>
-        </header>
-
-        <main class="main-content">
-          {{ content }}
-
-          <div class="discord-wrap" aria-label="Discord server widget">
-            <iframe
-              src="https://discord.com/widget?id=1081678448965202061&theme=dark"
-              title="Discord server widget"
-              width="350"
-              height="500"
-              allowtransparency="true"
-              frameborder="0"
-              sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-            </iframe>
-          </div>
-        </main>
-      </div>
-
-      <!-- Sidebar (right) -->
-      <aside class="sidebar" aria-label="Site navigation">
-        <h2>Navigation</h2>
+    <!-- Navigation Header -->
+    <nav class="navigation" aria-label="Site navigation">
+      <div class="nav-content">
         <ul>
           <li><a href="https://divizion-mad.github.io/1/">Home</a></li>
           <li><a href="https://www.youtube.com/@DivizionM.A.D">Media</a></li>
           <li><a href="https://discord.com/invite/tZ5FnVWxxM">Operations</a></li>
         </ul>
-      </aside>
+      </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+      <h1 class="project-name">{{ site.title }}</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      {{ content }}
+    </main>
+
+    <!-- Discord Widget at Bottom -->
+    <div class="discord-wrap" aria-label="Discord server widget">
+      <iframe
+        src="https://discord.com/widget?id=1081678448965202061&theme=dark"
+        title="Discord server widget"
+        width="350"
+        height="500"
+        allowtransparency="true"
+        frameborder="0"
+        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+      </iframe>
     </div>
   </body>
 </html>
